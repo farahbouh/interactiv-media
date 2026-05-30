@@ -23,15 +23,43 @@
 
     <main>
         <section>
-            <h1>Titre principal de la page</h1>
-            <p>Contenu à écrire ici.</p>
+            <h1>Nous contacter</h1>
+            
+            <form action="https://formspree.io/f/xbdbbdqg" method="POST">
+                <div>
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom" placeholder="Texte" required>
+                </div>
+                <div>
+                    <label for="email">Adresse mail</label>
+                    <input type="email" id="email" name="email" placeholder="Texte" required>
+                </div>
+                <div>
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Texte" required></textarea>
+                </div>
+                <button type="submit" class="btn">Envoyer</button>
+            </form>
+
+            <div class="contact-infos">
+                <h1>Nos réseaux</h1>
+                <ul>
+                    <li><a href="https://www.instagram.com/interactiv.media/">Instagram</a></li>
+                    <li><a href="interactivcontact@gmail.com">mail</a></li>
+                    <li><a href="https://www.facebook.com/profile.php?id=100067852282850">Facebook</a></li>
+                </ul>
+
+                <h2>Notre localisation</h2>
+                <p>Nous somme situer sur 20 B RUE GAMBETTA, 69190 ST FONS</p>
+                <a href="https://maps.app.goo.gl/7QESpYrvgmo52EW29" target="_blank" rel="noopener" class="btn btn-outline">Voir sur Google Maps</a>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>© 2026 Interactiv' Media — Tous droits réservés</p>
+        <p>© 2025 Interactiv' Media — Tous droits réservés</p>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
