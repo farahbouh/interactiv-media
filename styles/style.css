@@ -19,6 +19,10 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
 }
 h1 { font-size: 32px; }
+h2 {
+    font-size: 24px;
+    margin-top: 24px;
+}
 p { margin-bottom: 16px; }
 a { color: #ED2124; text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -44,6 +48,11 @@ nav ul li a {
     padding: 8px 16px;
     display: block;
 }
+nav ul li a:hover {
+    background-color: #ED2124;
+    border-radius: 4px;
+    text-decoration: none;
+}
 
 /* Contenu principal */
 main {
@@ -55,6 +64,67 @@ section {
     margin-bottom: 32px;
 }
 
+/* Boutons génériques */
+.btn, button[type="submit"] {
+    display: inline-block;
+    background-color: #ED2124;
+    color: white;
+    padding: 10px 19px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+.btn:hover, button[type="submit"]:hover {
+    background-color: #c41e21;
+    text-decoration: none;
+}
+
+/* Formulaires */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 500px;
+    margin: 24px 0;
+}
+label {
+    font-weight: bold;
+}
+input, textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+/* Événements */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+    margin-top: 16px;
+}
+.event-card {
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 8px;
+    background: #fefefe;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.event-date {
+    font-weight: bold;
+    color: #ED2124;
+}
+/* Effet au survol des cartes événements */
+
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
 /* Pied de page */
 footer {
     background-color: #222020;
@@ -64,4 +134,72 @@ footer {
     margin-top: 32px;
 }
 
+/* Responsive : menu vertical sur mobile écran jusqu'à 768px de large */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+    nav ul li a {
+        padding: 8px;
+    }
+    main {
+        padding: 16px;
+    }
+    h1 {
+        font-size: 29px;
+    }
+    h2 {
+        font-size: 22px;
+        margin-top: 16px;
+    }
+    .events-grid {
+        gap: 16px;
+    }
+    .event-card {
+        padding: 16px;
+    }
+    form {
+        max-width: 100%;
+    }
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #222020;
+    background-color: #ffffff;
+}
 
+main {
+    flex: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 16px;
+    width: 100%;
+}
+
+footer {
+    background-color: #222020;
+    color: #ccc;
+    text-align: center;
+    padding: 24px;
+    margin-top: 0;   /* au lieu de 32px */
+}
+
+header {
+    margin: 0;
+}
+
+header h1 {
+    margin: 0;
+}
