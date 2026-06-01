@@ -1,0 +1,17 @@
+[
+    {
+        "question": "Que signifie 'Le jeudi ça se dit' ?",
+        "options": ["Un marché", "Un débat citoyen", "Un concert", "Une exposition"],
+        "answer": 1
+    },
+    {
+        "question": "Quelle est la couleur principale du logo d'Interactiv' Media ?",
+        "options": ["Bleu", "Vert", "Rouge", "Jaune"],
+        "answer": 2
+    },
+    {
+        "question": "À quelle fréquence a lieu le débat ?",
+        "options": ["Toutes les semaines", "Une fois par mois", "Tous les deux mois", "Une fois par an"],
+        "answer": 1
+    }
+]
