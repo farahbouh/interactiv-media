@@ -10,9 +10,21 @@ app = Flask(__name__)
 CORS(app)
 
 # ---------- Configuration Supabase ----------
+import traceback
+
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
-supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+print(f"SUPABASE_URL: {SUPABASE_URL}")
+print(f"SUPABASE_KEY: {'OK' if SUPABASE_KEY else 'MANQUANTE'}")
+
+try:
+    supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+    print("Supabase connecté OK")
+except Exception as e:
+    print(f"ERREUR Supabase: {e}")
+    traceback.print_exc()
+    raise
 
 # ---------- Pour limiter les envois par IP ----------
 dernier_envoi_par_ip = defaultdict(float)
