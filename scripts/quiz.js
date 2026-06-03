@@ -1,4 +1,6 @@
+
 document.addEventListener("DOMContentLoaded", () => {
+	fetch("https://interactiv-media.onrender.com/health"); 
     let questions = [];
     let index = 0;
     let score = 0;
