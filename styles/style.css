@@ -1,0 +1,221 @@
+/* -----------Mise à 0 -----------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #222020;
+    background-color: #ffffff;
+}
+
+/* -----------Police----------- */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+h1 { font-size: 32px; }
+h2 {
+    font-size: 24px;
+    margin-top: 24px;
+}
+p { margin-bottom: 16px; }
+a { color: #ED2124; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* -----------Tete et navigation----------- */
+header {
+    background-color: #222020;
+    color: white;
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0;
+}
+header h1 { margin: 0; }
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 16px;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    display: block;
+}
+nav ul li a:hover {
+    background-color: #ED2124;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+/* ========== MAIN CONTENT ========== */
+main {
+    flex: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 16px;
+    width: 100%;
+}
+section {
+    margin-bottom: 32px;
+}
+
+/* ========== BOUTONS ========== */
+.btn, button[type="submit"] {
+    display: inline-block;
+    background-color: #ED2124;
+    color: white;
+    padding: 10px 19px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+.btn:hover, button[type="submit"]:hover {
+    background-color: #c41e21;
+    text-decoration: none;
+}
+
+/* ========== FORMULAIRES ========== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 500px;
+    margin: 24px 0;
+}
+form div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+label {
+    font-weight: bold;
+    color: #222020;
+}
+input, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 16px;
+    transition: border-color 0.2s;
+}
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #ED2124;
+    box-shadow: 0 0 0 2px rgba(237,33,36,0.1);
+}
+button[type="submit"] {
+    align-self: flex-start;
+    margin-top: 8px;
+}
+
+/* ========== GRILLE ÉVÉNEMENTS ========== */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+    margin-top: 16px;
+}
+.event-card {
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 8px;
+    background: #fefefe;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+.event-date {
+    font-weight: bold;
+    color: #ED2124;
+}
+
+/* -----------Quiz----------- */
+.quiz-card {
+    background: #fefefe;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+}
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+.quiz-option {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.75rem;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.quiz-option:hover {
+    background-color: #ED2124;
+    color: white;
+}
+
+/* -----------Pied de page----------- */
+footer {
+    background-color: #222020;
+    color: #ccc;
+    text-align: center;
+    padding: 24px;
+    margin-top: 0;  /* collé en bas grâce à flex */
+}
+
+/* -----------Responsive-----------*/
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+    nav ul li a {
+        padding: 8px;
+    }
+    main {
+        padding: 16px;
+    }
+    h1 {
+        font-size: 29px;
+    }
+    h2 {
+        font-size: 22px;
+        margin-top: 16px;
+    }
+    .events-grid {
+        gap: 16px;
+    }
+    .event-card {
+        padding: 16px;
+    }
+    form {
+        max-width: 100%;
+    }
+}
