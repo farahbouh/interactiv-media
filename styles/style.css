@@ -124,7 +124,7 @@ button[type="submit"] {
     margin-top: 8px;
 }
 
-/* ========== GRILLE ÉVÉNEMENTS ========== */
+/* --------- Evenements ---------  */
 .events-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -178,7 +178,7 @@ button[type="submit"] {
 /* -----------Pied de page----------- */
 footer {
     background-color: #222020;
-    color: #ccc;
+    color: #ffffff;
     text-align: center;
     padding: 24px;
     margin-top: 0;  /* collé en bas grâce à flex */
@@ -218,4 +218,14 @@ footer {
     form {
         max-width: 100%;
     }
+}
+/* ------- RGAA (accessibilité) -------------- */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+.quiz-option:focus {
+    outline: 2px solid #ED2124;
+    outline-offset: 2px;
+    border-radius: 2px;
 }
