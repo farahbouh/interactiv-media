@@ -6,18 +6,14 @@ stages:
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
 
-cache:
-  paths:
-    - .cache/pip
-
 before_script:
   - pip install --upgrade pip
-  - pip install pytest flask flask-cors
+  - pip install pytest flask flask-cors supabase
 
 test:
   stage: test
   script:
     - echo "Lancement des tests unitaires..."
-    - pytest tests/ -v
+    - pytest test_score.py -v  
   only:
     - main
