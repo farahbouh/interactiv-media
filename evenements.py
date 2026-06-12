@@ -10,8 +10,7 @@ app = Flask(__name__, template_folder='.')
 
 # ==================== CORS ====================
 # Lit l'origine autorisée depuis l'environnement, ou utilise Netlify par défaut
-ALLOWED_ORIGIN = os.getenv("ALLOWED_ORIGIN", "https://interactiv-media.netlify.app")
-CORS(app, origins=[ALLOWED_ORIGIN])
+CORS(app, origins=["https://interactiv-media.netlify.app"])
 
 # ==================== VARIABLES D'ENVIRONNEMENT ====================
 # TOUTES les valeurs sensibles viennent des variables d'environnement
