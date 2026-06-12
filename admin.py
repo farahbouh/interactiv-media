@@ -7,7 +7,7 @@ from functools import wraps
 from supabase import create_client, Client
 
 app = Flask(__name__, template_folder='.')
-CORS(app)
+CORS(app, origins=["https://interactiv-media.netlify.app"])
 
 # ==================== CONNEXION SUPABASE ====================
 # Les secrets sont lus depuis les variables d'environnement Render
