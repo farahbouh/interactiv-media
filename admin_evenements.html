@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Événements</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        input, textarea { width: 100%; padding: 8px; margin: 5px 0; box-sizing: border-box; }
+        button { background: #007bff; color: white; padding: 8px 15px; border: none; cursor: pointer; margin: 5px; }
+        .delete-btn { background: #dc3545; }
+        .event-item { border: 1px solid #ddd; padding: 10px; margin: 10px 0; }
+        .login-form { max-width: 400px; margin: 50px auto; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <!-- Formulaire de connexion -->
+    <div id="loginDiv" class="login-form">
+        <h2>Connexion Admin</h2>
+        <input type="text" id="username" placeholder="Nom d'utilisateur"><br>
+        <input type="password" id="password" placeholder="Mot de passe"><br>
+        <button onclick="login()">Se connecter</button>
+        <div id="errorMsg" class="error"></div>
+    </div>
+
+    <!-- Interface admin (masquée jusqu'à connexion) -->
+    <div id="adminDiv" style="display:none;">
+        <h1>Gestion des événements</h1>
+
+        <div style="background: #e9ecef; padding: 15px; margin-bottom: 20px;">
+            <h3>Ajouter un événement</h3>
+            <input type="text" id="newTitre" placeholder="Titre"><br>
+            <input type="text" id="newDate" placeholder="Date (ex: 18 juin 2026)"><br>
+            <textarea id="newDescription" placeholder="Description" rows="3"></textarea><br>
+            <button onclick="ajouterEvenement()">Ajouter</button>
+        </div>
+
+        <h3>Liste des événements</h3>
+        <div id="evenementsList"></div>
+
+        <button onclick="deconnexion()" style="background:#6c757d; margin-top: 20px;">Déconnexion</button>
+    </div>
+
+    <script>
+        // URL de ton service Render — à remplacer par la vraie URL après création
+        const API_URL = "https://TON-SERVICE-ADMIN.onrender.com";
+
+        let token = null;
+
+        async function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch(API_URL + '/api/admin/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    token = data.token;
+                    document.getElementById('loginDiv').style.display = 'none';
+                    document.getElementById('adminDiv').style.display = 'block';
+                    chargerEvenements();
+                } else {
+                    document.getElementById('errorMsg').innerText = 'Identifiants incorrects';
+                }
+            } catch (error) {
+                document.getElementById('errorMsg').innerText = 'Erreur de connexion : ' + error.message;
+            }
+        }
+
+        async function chargerEvenements() {
+            const response = await fetch(API_URL + '/api/admin/evenements', {
+                headers: { 'Authorization': 'Bearer ' + token }
+            });
+            const evenements = await response.json();
+
+            let html = '';
+            for (let event of evenements) {
+                html += `
+                    <div class="event-item">
+                        <input type="text" id="titre_${event.id}" value="${event.titre}"><br>
+                        <input type="text" id="date_${event.id}" value="${event.date}"><br>
+                        <textarea id="desc_${event.id}" rows="3">${event.description}</textarea><br>
+                        <button onclick="modifierEvenement(${event.id})">Modifier</button>
+                        <button onclick="supprimerEvenement(${event.id})" class="delete-btn">Supprimer</button>
+                    </div>
+                `;
+            }
+            document.getElementById('evenementsList').innerHTML = html || '<p>Aucun événement.</p>';
+        }
+
+        async function ajouterEvenement() {
+            const titre = document.getElementById('newTitre').value;
+            const date = document.getElementById('newDate').value;
+            const description = document.getElementById('newDescription').value;
+
+            await fetch(API_URL + '/api/admin/evenements', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify({ titre, date, description })
+            });
+
+            // Vider les champs et recharger la liste
+            document.getElementById('newTitre').value = '';
+            document.getElementById('newDate').value = '';
+            document.getElementById('newDescription').value = '';
+            chargerEvenements();
+        }
+
+        async function modifierEvenement(id) {
+            const titre = document.getElementById('titre_' + id).value;
+            const date = document.getElementById('date_' + id).value;
+            const description = document.getElementById('desc_' + id).value;
+
+            await fetch(API_URL + '/api/admin/evenements/' + id, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify({ titre, date, description })
+            });
+
+            chargerEvenements();
+        }
+
+        async function supprimerEvenement(id) {
+            if (confirm('Supprimer cet événement ?')) {
+                await fetch(API_URL + '/api/admin/evenements/' + id, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                chargerEvenements();
+            }
+        }
+
+        function deconnexion() {
+            token = null;
+            document.getElementById('loginDiv').style.display = 'block';
+            document.getElementById('adminDiv').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
