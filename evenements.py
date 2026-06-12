@@ -1,24 +1,34 @@
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from datetime import datetime
+import os
 import secrets
 from functools import wraps
 from supabase import create_client, Client
 
 app = Flask(__name__, template_folder='.')
-CORS(app)
 
-# ==================== VOS IDENTIFIANTS SUPABASE ====================
-SUPABASE_URL = "https://dzkrdctxfzyshcpcqmmf.supabase.co"
-SUPABASE_KEY = "REMOVED"
-# ===================================================================
+# ==================== CORS ====================
+# Lit l'origine autorisée depuis l'environnement, ou utilise Netlify par défaut
+ALLOWED_ORIGIN = os.getenv("ALLOWED_ORIGIN", "https://interactiv-media.netlify.app")
+CORS(app, origins=[ALLOWED_ORIGIN])
+
+# ==================== VARIABLES D'ENVIRONNEMENT ====================
+# TOUTES les valeurs sensibles viennent des variables d'environnement
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
+
+# Vérifie que tout est bien configuré
+if not all([SUPABASE_URL, SUPABASE_KEY, ADMIN_USERNAME, ADMIN_PASSWORD]):
+    print("   SUPABASE_URL, SUPABASE_KEY, ADMIN_USERNAME, ADMIN_PASSWORD")
+    exit(1)
 
 print("Connexion à Supabase...")
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
-print("✅ Connecté !")
 
-ADMIN_USERNAME = "tuteur"
-ADMIN_PASSWORD = "motdepasse123"
+
 sessions_actives = {}
 
 def connexion_requise(f):
@@ -88,13 +98,10 @@ def admin_supprimer_evenement(id):
 def page_admin_evenements():
     return render_template('admin_evenements.html')
 
-@app.route('/evenements.html')
-def page_evenements():
-    return render_template('evenements.html')
-
 @app.route('/health')
 def health():
     return {'status': 'ok'}
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5001)
+    port = int(os.getenv("PORT", 5001))
+    app.run(debug=False, host='0.0.0.0', port=port)
