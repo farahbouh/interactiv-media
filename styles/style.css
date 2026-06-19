@@ -1,3 +1,6 @@
+/* -----------Google Fonts----------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700;800&display=swap');
+
 /* -----------Mise à 0 -----------*/
 * {
     margin: 0;
@@ -5,42 +8,70 @@
     box-sizing: border-box;
 }
 
+/* Variables globales */
+:root {
+    --red: #ED2124;
+    --red-dark: #c41e21;
+    --dark: #1a1a1a;
+    --text: #222020;
+    --muted: #555;
+    --border: #e0e0e0;
+    --bg-soft: #f8f8f8;
+    --radius: 8px;
+    --radius-lg: 12px;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.07);
+    --shadow-md: 0 8px 24px rgba(0,0,0,0.10);
+    --transition: 0.2s ease;
+}
+
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    font-size: 17px;          /* 16 → 17 pour meilleure lisibilité */
-    line-height: 1.6;
-    color: #222020;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text);
     background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* -----------Police----------- */
 h1, h2, h3, h4, h5, h6 {
+    font-family: 'Nunito', 'Segoe UI', Arial, sans-serif;
     margin-bottom: 12px;
-    font-weight: 600;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--dark);
 }
-h1 { font-size: 34px; }       /* 32 → 34 */
+h1 { font-size: 36px; }
 h2 {
-    font-size: 26px;          /* 24 → 26 */
-    margin-top: 24px;
+    font-size: 26px;
+    margin-top: 32px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
 }
-p { margin-bottom: 16px; }
-a { color: #ED2124; text-decoration: none; }
+h3 { font-size: 20px; }
+p {
+    margin-bottom: 16px;
+    color: #333;
+}
+a { color: var(--red); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* -----------Tete et navigation----------- */
 header {
-    background-color: #1a1a1a;
+    background-color: var(--dark);
     color: white;
-    padding: 12px 24px;
+    padding: 14px 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
     margin: 0;
     gap: 15px;
+    border-bottom: 3px solid var(--red);
 }
 
 /* Conteneur du bandeau */
@@ -94,17 +125,36 @@ nav ul {
 nav ul li a {
     color: white;
     text-decoration: none;
-    padding: 8px 16px;        /* 6px 14px → 8px 16px */
+    padding: 8px 4px;
     display: block;
-    font-size: 17px;          /* 15 → 17 */
+    font-size: 16px;
+    font-weight: 500;
     white-space: nowrap;
-    transition: background-color 0.3s ease;
-    border-radius: 4px;
+    position: relative;
+    letter-spacing: 0.01em;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--red);
+    transition: width 0.25s ease;
+    border-radius: 2px;
+}
+
+nav ul li a:hover::after,
+nav ul li a[aria-current="page"]::after {
+    width: 100%;
 }
 
 nav ul li a:hover {
-    background-color: #ED2124;
+    background-color: transparent;
     text-decoration: none;
+    color: white;
 }
 
 /* ========== MAIN CONTENT ========== */
@@ -122,19 +172,27 @@ section {
 /* ========== BOUTONS ========== */
 .btn, button[type="submit"] {
     display: inline-block;
-    background-color: #ED2124;
+    background-color: var(--red);
     color: white;
-    padding: 12px 22px;       /* 10px 19px → 12px 22px */
-    border-radius: 6px;
+    padding: 12px 24px;
+    border-radius: var(--radius);
     text-decoration: none;
-    font-weight: bold;
-    border: none;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    border: 2px solid transparent;
     cursor: pointer;
-    font-size: 17px;          /* Ajouté */
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    transition: background-color var(--transition), transform var(--transition), box-shadow var(--transition);
 }
 .btn:hover, button[type="submit"]:hover {
-    background-color: #c41e21;
+    background-color: var(--red-dark);
+    box-shadow: 0 4px 12px rgba(237,33,36,0.3);
     text-decoration: none;
+    transform: translateY(-1px);
+}
+.btn:active, button[type="submit"]:active {
+    transform: translateY(0);
 }
 
 /* ========== FORMULAIRES ========== */
@@ -151,22 +209,25 @@ form div {
     gap: 6px;
 }
 label {
-    font-weight: bold;
-    color: #222020;
-    font-size: 17px;          /* Ajouté */
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 15px;
+    letter-spacing: 0.01em;
 }
 input, textarea {
-    padding: 12px;            /* 10 → 12 */
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
     font-family: inherit;
-    font-size: 17px;          /* 16 → 17 */
-    transition: border-color 0.2s;
+    font-size: 16px;
+    background: var(--bg-soft);
+    transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
 }
 input:focus, textarea:focus {
     outline: none;
-    border-color: #ED2124;
-    box-shadow: 0 0 0 2px rgba(237,33,36,0.1);
+    border-color: var(--red);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(237,33,36,0.12);
 }
 button[type="submit"] {
     align-self: flex-start;
@@ -176,52 +237,61 @@ button[type="submit"] {
 /* --------- Evenements ---------  */
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* 260 → 280 */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 24px;
-    margin-top: 16px;
+    margin-top: 24px;
 }
 .event-card {
-    border: 1px solid #ddd;
-    padding: 20px;            /* 16 → 20 */
-    border-radius: 8px;
-    background: #fefefe;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid var(--border);
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition), box-shadow var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 .event-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
 }
 .event-date {
-    font-weight: bold;
-    color: #ED2124;
+    font-weight: 700;
+    color: var(--red);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
 }
 
 /* -----------Quiz----------- */
 .quiz-card {
-    background: #fefefe;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 1rem 0;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    margin: 16px 0;
 }
 .quiz-options {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    margin-top: 1rem;
+    gap: 10px;
+    margin-top: 16px;
 }
 .quiz-option {
-    background-color: #f4f4f4;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    padding: 1rem;            /* 0.75rem → 1rem */
+    background-color: #ffffff;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 18px;
     text-align: left;
     cursor: pointer;
-    transition: background 0.2s;
-    font-size: 17px;          /* Ajouté */
+    transition: border-color var(--transition), background var(--transition), color var(--transition);
+    font-size: 16px;
+    font-weight: 500;
 }
 .quiz-option:hover {
-    background-color: #ED2124;
+    background-color: var(--red);
+    border-color: var(--red);
     color: white;
 }
 
@@ -436,40 +506,52 @@ button[type="submit"] {
 }
 
 /* ------- RGAA (accessibilité) -------------- */
-a:focus,
-button:focus,
-input:focus,
-textarea:focus,
-.quiz-option:focus {
-    outline: 2px solid #ED2124;
-    outline-offset: 2px;
-    border-radius: 2px;
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+.quiz-option:focus-visible {
+    outline: 3px solid var(--red);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+/* Réduction de mouvement pour accessibilité */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+    nav ul li a::after {
+        transition: none !important;
+    }
 }
 
 /* ========== BOUTON ENTRER SPÉCIAL ========== */
 .btn-entrer {
     display: inline-block;
-    background-color: #ED2124;
+    background-color: var(--red);
     color: white;
-    font-size: 26px;          /* 24 → 26 */
-    font-weight: bold;
-    padding: 22px 55px;       /* 20px 50px → 22px 55px */
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    padding: 22px 56px;
     border-radius: 50px;
     text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(237, 33, 36, 0.3);
-    letter-spacing: 1px;
+    box-shadow: 0 4px 20px rgba(237, 33, 36, 0.35);
+    letter-spacing: 0.04em;
 }
 
 .btn-entrer:hover {
-    background-color: #c41e21;
-    transform: scale(1.08);
-    box-shadow: 0 8px 25px rgba(237, 33, 36, 0.5);
+    background-color: var(--red-dark);
+    transform: scale(1.06);
+    box-shadow: 0 8px 30px rgba(237, 33, 36, 0.5);
     text-decoration: none;
 }
 
 .btn-entrer:active {
-    transform: scale(0.95);
+    transform: scale(0.97);
 }
 
 /* Version responsive du bouton entrer */
@@ -487,13 +569,34 @@ textarea:focus,
     }
 }
 
+/* ========== VIDÉOS YOUTUBE RESPONSIVE ========== */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* ratio 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: #000;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
 /* ========== FOOTER AVEC LOGOS ========== */
 footer {
-    background-color: #222020;
+    background-color: #111111;
     color: #ffffff;
     text-align: center;
-    padding: 28px 20px;       /* 24px 16px → 28px 20px */
+    padding: 40px 20px 28px;
     margin-top: 0;
+    border-top: 3px solid var(--red);
 }
 
 .footer-content {
