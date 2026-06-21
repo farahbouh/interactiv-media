@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Retrouvez tous les événements à venir d'Interactiv' Media : débats citoyens, dates, lieux et thèmes. Participez aux rencontres.">
-    <title>Événements - Interactiv' Media</title>
-    <link rel="stylesheet" href="styles/style.css">
-
-    <!-- Réveille le service Render dès le chargement de la page -->
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="République citoyenne - Interactiv' Media : notre démarche citoyenne et participative à Lyon.">
+		<title>République citoyenne - Interactiv' Media</title>
+		<link rel="stylesheet" href="styles/style.css">
 		<script src="scripts/health-check.js"></script>
-
-	<!-- Lien Font Awesome pour les logos des réseaux sociaux -->
+		<!-- Lien Font Awesome pour les logos des réseaux sociaux -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+		<!-- Librairie pour générer le PDF côté navigateur -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 	</head>
-<body>
-    <header>
+
+	<body>
+		<header>
 		<a href="accueil.html"><img src="images/logo.png" alt="Logo Interactiv' Media" style="height:50px; width:auto;"></a>
 		<nav>
 			<ul class="menu">
@@ -28,18 +28,20 @@
 		</nav>
 	</header>
 
-    <main>
-        <section>
-            <h1>Événements à venir</h1>
-            <p>Retrouvez ici tous les prochains débats et rencontres citoyennes organisés par Interactiv' Media.</p>
+		<main>
+			<section>
+				<div id="pdf-content">
+					<h1>République citoyenne</h1>
+					<p>Contenu.</p>
+				</div>
 
-            <div id="events-container" class="events-grid">
-                <div class="loading">Chargement des événements...</div>
-            </div>
-        </section>
-    </main>
+				<button id="downloadPdfBtn" class="btn" type="button" style="margin-top:20px;">
+					Télécharger en PDF
+				</button>
+			</section>
+		</main>
 
-    <footer>
+		<footer>
 		<div class="footer-content">
 			<div class="footer-social">
 				<a href="https://www.instagram.com/interactiv.media/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -67,6 +69,6 @@
 		</div>
 	</footer>
 
-    <script src="scripts/evenements.js"></script>
-</body>
+		<script src="scripts/republique-citoyenne.js"></script>
+	</body>
 </html>
