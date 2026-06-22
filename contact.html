@@ -14,7 +14,10 @@
 	<body>
 		<header>
 		<a href="accueil.html"><img src="images/logo.png" alt="Logo Interactiv' Media" style="height:50px; width:auto;"></a>
-		<nav>
+		<button class="menu-toggle" aria-label="Menu" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'));document.querySelector('nav').classList.toggle('open')">
+        <span></span><span></span><span></span>
+    </button>
+    <nav>
 			<ul class="menu">
 				<li><a href="accueil.html">Accueil</a></li>
 				<li><a href="apropos.html">À propos</a></li>
