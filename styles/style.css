@@ -412,7 +412,7 @@ button[type="submit"] {
         align-items: center;
         gap: 0;
         padding: 14px 16px;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
     }
 
     .menu-toggle {
@@ -420,10 +420,9 @@ button[type="submit"] {
     }
 
     nav {
-        position: absolute;
-        top: 81px;
-        left: 0;
-        right: 0;
+        position: static;
+        width: 100%;
+        flex-basis: 100%;
         background-color: var(--dark);
         z-index: 100;
         overflow: hidden;
