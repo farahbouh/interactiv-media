@@ -32,17 +32,17 @@
 
 		<main>
 		<section>
+			<h1>Bienvenue sur le site d'Interactiv' Media</h1>
+				<p>Nous sommes une jeune association lyonnaise qui médiatise les actualités de Lyon et sa banlieue. Nous animons également des évènements citoyens. Notre projet phare : <strong>« Le jeudi ça se dit »</strong>, un débat citoyen organisé une fois par mois dans un restaurant lyonnais.</p>
+				<p><strong>Prochain <a href="evenements.html">débat</a> : jeudi 18 juin 2026</strong> – Thème « Mobilités douces à Lyon : rêve ou réalité ? » Entrée libre.</p>
+				<p>Vous souhaitez rejoindre l'aventure ? Nous recherchons des bénévoles et des nouveaux membres. <a href="recrutement.html">En savoir plus</a></p>
+			</section>
+		<section>
 			<h2>Notre dernière vidéo</h2>
 			<div class="video-wrapper">
 			<iframe width="560" height="315" src="https://www.youtube.com/embed/YZy8icW-LYQ?si=NX67L9b6qxYhnsod" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 			</div>
 		</section>
-			<section>
-				<h1>Bienvenue sur le site d'Interactiv' Media</h1>
-				<p>Nous sommes une jeune association lyonnaise qui médiatise les actualités de Lyon et sa banlieue. Nous animons également des évènements citoyens. Notre projet phare : <strong>« Le jeudi ça se dit »</strong>, un débat citoyen organisé une fois par mois dans un restaurant lyonnais.</p>
-				<p><strong>Prochain <a href="evenements.html">débat</a> : jeudi 18 juin 2026</strong> – Thème « Mobilités douces à Lyon : rêve ou réalité ? » Entrée libre.</p>
-				<p>Vous souhaitez rejoindre l'aventure ? Nous recherchons des bénévoles et des nouveaux membres. <a href="recrutement.html">En savoir plus</a></p>
-			</section>
 		</main>
 
 		<footer>
@@ -72,5 +72,18 @@
 			<p>© 2026 Interactiv' Media - Tous droits réservés</p>
 		</div>
 	</footer>
-	</body>
+	<script>
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        var nav = document.querySelector('nav');
+        var btn = document.querySelector('.menu-toggle');
+        if (nav && nav.classList.contains('open')) {
+            nav.classList.remove('open');
+            btn.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+        }
+    }
+});
+</script>
+</body>
 </html>
