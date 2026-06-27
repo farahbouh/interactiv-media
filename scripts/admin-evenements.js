@@ -1,4 +1,3 @@
-// URL de ton service Render — à remplacer par la vraie URL après création
 const API_URL = "https://interactiv-media.onrender.com";
 
 let token = null;

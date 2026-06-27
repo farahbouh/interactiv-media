@@ -2,37 +2,62 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Événements</title>
-
+    <link rel="stylesheet" href="styles/style.css">
+   
 </head>
 <body>
-    <!-- Formulaire de connexion -->
-    <div id="loginDiv" class="login-form">
-        <h2>Connexion Admin</h2>
-        <input type="text" id="username" placeholder="Nom d'utilisateur"><br>
-        <input type="password" id="password" placeholder="Mot de passe"><br>
-        <button onclick="login()">Se connecter</button>
-        <div id="errorMsg" class="error"></div>
-    </div>
+    <main style="max-width: 700px; margin: 60px auto; padding: 0 24px;">
 
-    <!-- Interface admin (masquée jusqu'à connexion) -->
-    <div id="adminDiv" style="display:none;">
-        <h1>Gestion des événements</h1>
-
-        <div style="background: #e9ecef; padding: 15px; margin-bottom: 20px;">
-            <h3>Ajouter un événement</h3>
-            <input type="text" id="newTitre" placeholder="Titre"><br>
-            <input type="text" id="newDate" placeholder="Date (ex: 18 juin 2026)"><br>
-            <textarea id="newDescription" placeholder="Description" rows="3"></textarea><br>
-            <button onclick="ajouterEvenement()">Ajouter</button>
+        <!-- Formulaire de connexion -->
+        <div id="loginDiv">
+            <h1>Connexion Admin</h1>
+            <form>
+                <div>
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" id="username" placeholder="Nom d'utilisateur" autocomplete="username">
+                </div>
+                <div>
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" placeholder="Mot de passe" autocomplete="current-password">
+                </div>
+                <button type="button" id="btnLogin" class="btn">Se connecter</button>
+                <div id="errorMsg" class="error" role="alert"></div>
+            </form>
         </div>
 
-        <h3>Liste des événements</h3>
-        <div id="evenementsList"></div>
+        <!-- Interface admin -->
+        <div id="adminDiv" class="hidden">
+            <h1>Gestion des événements</h1>
 
-        <button onclick="deconnexion()" style="background:#6c757d; margin-top: 20px;">Déconnexion</button>
-    </div>
+            <div class="section-ajout">
+                <h2>Ajouter un événement</h2>
+                <form>
+                    <div>
+                        <label for="newTitre">Titre</label>
+                        <input type="text" id="newTitre" placeholder="Titre">
+                    </div>
+                    <div>
+                        <label for="newDate">Date</label>
+                        <input type="text" id="newDate" placeholder="ex : 18 juin 2026">
+                    </div>
+                    <div>
+                        <label for="newDescription">Description</label>
+                        <textarea id="newDescription" placeholder="Description" rows="3"></textarea>
+                    </div>
+                    <button type="button" id="btnAjouter" class="btn">Ajouter</button>
+                </form>
+            </div>
 
-    <script src="scripts/admin-evenements.js"></script>
+            <h2>Liste des événements</h2>
+            <div id="evenementsList"></div>
+
+            <button type="button" id="btnDeconnexion" class="btn-deconnexion">Déconnexion</button>
+        </div>
+
+    </main>
+
+    <script src="scripts/admin-evenements.js" defer></script>
 </body>
 </html>

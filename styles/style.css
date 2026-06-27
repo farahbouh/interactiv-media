@@ -763,3 +763,26 @@ footer p {
 @media (prefers-reduced-motion: reduce) {
     .skeleton { animation: none; background: #ececec; }
 }
+
+.hidden { display: none; }
+.error { color: var(--red); margin-top: 8px; font-weight: 600; }
+.section-ajout {
+	background: var(--bg-soft);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-lg);
+	padding: 24px;
+	margin-bottom: 32px;
+}
+.btn-deconnexion {
+	background: #6c757d;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: var(--radius);
+	cursor: pointer;
+	font-size: 15px;
+	margin-top: 24px;
+}
+.btn-deconnexion:hover {
+	background: #5a6268;
+}

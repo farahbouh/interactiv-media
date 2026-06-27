@@ -8,6 +8,7 @@
 		<title>République citoyenne - Interactiv' Media</title>
 		<link rel="stylesheet" href="styles/style.css">
 		<script src="scripts/health-check.js" defer></script>
+		<script src="scripts/nav.js" defer></script>
 		<!-- Lien Font Awesome pour les logos des réseaux sociaux -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 		<!-- Librairie pour générer le PDF côté navigateur -->
@@ -74,18 +75,6 @@
 	</footer>
 
 		<script src="scripts/republique-citoyenne.js"></script>
-	<script>
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        var nav = document.querySelector('nav');
-        var btn = document.querySelector('.menu-toggle');
-        if (nav && nav.classList.contains('open')) {
-            nav.classList.remove('open');
-            btn.classList.remove('open');
-            btn.setAttribute('aria-expanded', 'false');
-        }
-    }
-});
-</script>
+	
 </body>
 </html>
