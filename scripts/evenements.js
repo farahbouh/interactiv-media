@@ -33,7 +33,7 @@ function getBadge(dateStr) {
     } else if (d > today) {
         return `<span class="event-badge badge-a-venir">A venir</span>`;
     } else {
-        return `<span class="event-badge badge-passe">Passe</span>`;
+        return `<span class="event-badge badge-passe">Passé</span>`;
     }
 }
 
