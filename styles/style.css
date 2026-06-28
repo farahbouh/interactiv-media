@@ -253,25 +253,43 @@ button[type="submit"] {
 }
 .event-card {
     border: 1px solid var(--border);
-    padding: 24px;
+    padding: 20px;
     border-radius: var(--radius-lg);
     background: #fff;
     box-shadow: var(--shadow-sm);
     transition: transform var(--transition), box-shadow var(--transition);
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
 }
 .event-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     box-shadow: var(--shadow-md);
+}
+.event-card h2 {
+    font-size: 20px;
+    margin: 4px 0 0;
+    padding: 0;
+    border: none;
 }
 .event-date {
     font-weight: 700;
     color: var(--red);
-    font-size: 14px;
+    font-size: 13px;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
+    margin: 2px 0 0;
+}
+.event-lieu {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+}
+.event-description {
+    font-size: 15px;
+    color: #444;
+    margin: 4px 0 0;
+    line-height: 1.6;
 }
 
 /* -----------Quiz----------- */
@@ -793,14 +811,14 @@ footer p {
     align-items: center;
     gap: 8px;
     flex-wrap: wrap;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .event-type {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     background: var(--dark);
     color: white;
     padding: 3px 10px;
@@ -808,7 +826,7 @@ footer p {
 }
 
 .event-badge {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     padding: 3px 10px;
     border-radius: 20px;
@@ -818,8 +836,8 @@ footer p {
 }
 
 .badge-passe {
-    background: #e0e0e0;
-    color: #555;
+    background: #f0f0f0;
+    color: #777;
 }
 
 .badge-a-venir {
@@ -833,8 +851,8 @@ footer p {
 }
 
 .badge-dot {
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     background: var(--red);
     display: inline-block;
@@ -848,10 +866,4 @@ footer p {
 
 @media (prefers-reduced-motion: reduce) {
     .badge-dot { animation: none; }
-}
-
-.event-lieu {
-    font-size: 14px;
-    color: var(--muted);
-    margin-bottom: 4px;
 }
