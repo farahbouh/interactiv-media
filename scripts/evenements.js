@@ -52,16 +52,8 @@ async function chargerEvenements() {
             return;
         }
 
-        const tries = [...evenements].sort((a, b) => {
-        const today = new Date(); today.setHours(0,0,0,0);
-        const da = new Date(a.date); da.setHours(0,0,0,0);
-        const db = new Date(b.date); db.setHours(0,0,0,0);
-        const statutA = da.getTime() === today.getTime() ? 0 : da > today ? 1 : 2;
-        const statutB = db.getTime() === today.getTime() ? 0 : db > today ? 1 : 2;
-        if (statutA !== statutB) return statutA - statutB;
-        if (statutA === 1) return da - db;
-        return db - da;
-    });
+        const tries = [...evenements].sort((a, b) => new Date(b.date) - new Date(a.date));
+
         let html = '';
         for (let event of tries) {
             html += `

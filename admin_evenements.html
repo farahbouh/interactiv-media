@@ -30,6 +30,7 @@
 
             <div class="section-ajout">
                 <h2>Ajouter un événement</h2>
+                <div id="feedbackAjout" role="alert"></div>
                 <form>
                     <div>
                         <label for="newType">Type</label>
@@ -40,12 +41,8 @@
                         <input type="text" id="newTitre" placeholder="Titre de l'événement">
                     </div>
                     <div>
-                        <label for="newDate">Date (calendrier)</label>
+                        <label for="newDate">Date</label>
                         <input type="date" id="newDate">
-                    </div>
-                    <div>
-                        <label for="newDateTexte">ou date en texte libre</label>
-                        <input type="text" id="newDateTexte" placeholder="ex : 18 juin 2026">
                     </div>
                     <div>
                         <label for="newLieu">Lieu</label>
@@ -60,6 +57,7 @@
             </div>
 
             <h2>Liste des événements</h2>
+            <div id="feedbackListe" role="alert"></div>
             <div id="evenementsList"></div>
 
             <button type="button" id="btnDeconnexion" class="btn-deconnexion">Déconnexion</button>
