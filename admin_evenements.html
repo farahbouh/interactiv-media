@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Événements</title>
     <link rel="stylesheet" href="styles/style.css">
-   
 </head>
 <body>
     <main style="max-width: 700px; margin: 60px auto; padding: 0 24px;">
 
-        <!-- Formulaire de connexion -->
         <div id="loginDiv">
             <h1>Connexion Admin</h1>
             <form>
@@ -27,7 +25,6 @@
             </form>
         </div>
 
-        <!-- Interface admin -->
         <div id="adminDiv" class="hidden">
             <h1>Gestion des événements</h1>
 
@@ -35,12 +32,24 @@
                 <h2>Ajouter un événement</h2>
                 <form>
                     <div>
-                        <label for="newTitre">Titre</label>
-                        <input type="text" id="newTitre" placeholder="Titre">
+                        <label for="newType">Type</label>
+                        <input type="text" id="newType" placeholder="ex : Débat, Projection, Atelier...">
                     </div>
                     <div>
-                        <label for="newDate">Date</label>
-                        <input type="text" id="newDate" placeholder="ex : 18 juin 2026">
+                        <label for="newTitre">Titre</label>
+                        <input type="text" id="newTitre" placeholder="Titre de l'événement">
+                    </div>
+                    <div>
+                        <label for="newDate">Date (calendrier)</label>
+                        <input type="date" id="newDate">
+                    </div>
+                    <div>
+                        <label for="newDateTexte">ou date en texte libre</label>
+                        <input type="text" id="newDateTexte" placeholder="ex : 18 juin 2026">
+                    </div>
+                    <div>
+                        <label for="newLieu">Lieu</label>
+                        <input type="text" id="newLieu" placeholder="ex : Restaurant Le Zinc, Lyon">
                     </div>
                     <div>
                         <label for="newDescription">Description</label>

@@ -8,25 +8,19 @@ from supabase import create_client, Client
 
 app = Flask(__name__, template_folder='.')
 
-# ==================== CORS ====================
-# Lit l'origine autorisée depuis l'environnement, ou utilise Netlify par défaut
 CORS(app, origins=["https://interactiv-media.netlify.app"])
 
-# ==================== VARIABLES D'ENVIRONNEMENT ====================
-# TOUTES les valeurs sensibles viennent des variables d'environnement
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
 
-# Vérifie que tout est bien configuré
 if not all([SUPABASE_URL, SUPABASE_KEY, ADMIN_USERNAME, ADMIN_PASSWORD]):
     print("   SUPABASE_URL, SUPABASE_KEY, ADMIN_USERNAME, ADMIN_PASSWORD")
     exit(1)
 
 print("Connexion à Supabase...")
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
-
 
 sessions_actives = {}
 
@@ -51,15 +45,19 @@ def connexion_admin():
 @app.route('/api/evenements', methods=['GET'])
 def obtenir_evenements():
     try:
-        resultat = supabase.table("agenda").select("*").execute()
-        return jsonify(resultat.data)
+        aujourd_hui = datetime.now().date().isoformat()
+        futurs = supabase.table("agenda").select("*").gte("date", aujourd_hui).order("date").execute()
+        nb_passes = max(0, 10 - len(futurs.data))
+        passes = supabase.table("agenda").select("*").lt("date", aujourd_hui).order("date", desc=True).limit(nb_passes).execute()
+        resultat = passes.data[::-1] + futurs.data
+        return jsonify(resultat)
     except Exception as e:
         return jsonify({'erreur': str(e)}), 500
 
 @app.route('/api/admin/evenements', methods=['GET'])
 @connexion_requise
 def admin_obtenir_evenements():
-    resultat = supabase.table("agenda").select("*").execute()
+    resultat = supabase.table("agenda").select("*").order("date").execute()
     return jsonify(resultat.data)
 
 @app.route('/api/admin/evenements', methods=['POST'])
@@ -67,9 +65,11 @@ def admin_obtenir_evenements():
 def admin_ajouter_evenement():
     donnees = request.get_json()
     resultat = supabase.table("agenda").insert({
+        "type": donnees.get("type"),
         "titre": donnees.get("titre"),
         "date": donnees.get("date"),
-        "description": donnees.get("description")
+        "description": donnees.get("description"),
+        "lieu": donnees.get("lieu")
     }).execute()
     return jsonify(resultat.data[0]), 201
 
@@ -78,12 +78,9 @@ def admin_ajouter_evenement():
 def admin_modifier_evenement(id):
     donnees = request.get_json()
     modifications = {}
-    if "titre" in donnees:
-        modifications["titre"] = donnees["titre"]
-    if "date" in donnees:
-        modifications["date"] = donnees["date"]
-    if "description" in donnees:
-        modifications["description"] = donnees["description"]
+    for champ in ["type", "titre", "date", "description", "lieu"]:
+        if champ in donnees:
+            modifications[champ] = donnees[champ]
     resultat = supabase.table("agenda").update(modifications).eq("id", id).execute()
     return jsonify(resultat.data[0] if resultat.data else {})
 

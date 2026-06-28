@@ -786,3 +786,72 @@ footer p {
 .btn-deconnexion:hover {
 	background: #5a6268;
 }
+
+/* ========== BADGES ÉVÉNEMENTS ========== */
+.event-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+}
+
+.event-type {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: var(--dark);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.event-badge {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.badge-passe {
+    background: #e0e0e0;
+    color: #555;
+}
+
+.badge-a-venir {
+    background: #e6f4ea;
+    color: #2e7d32;
+}
+
+.badge-aujourd-hui {
+    background: #fdecea;
+    color: var(--red-dark);
+}
+
+.badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+    display: inline-block;
+    animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .badge-dot { animation: none; }
+}
+
+.event-lieu {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 4px;
+}
