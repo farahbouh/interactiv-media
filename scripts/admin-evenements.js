@@ -72,7 +72,7 @@ async function chargerEvenements() {
                         <label>Description *</label>
                         <textarea id="desc_${event.id}" rows="3">${escHtml(event.description || '')}</textarea>
                     </div>
-                    <button type="button" onclick="modifierEvenement(${event.id})" class="btn">Modifier</button>
+                    <button type="button" onclick="modifierEvenement(${event.id})" class="btn-ajouter">Modifier</button>
                     <button type="button" onclick="supprimerEvenement(${event.id})" class="btn-supprimer">Supprimer</button>
                 </div>
             `;

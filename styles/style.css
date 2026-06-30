@@ -94,13 +94,13 @@ header {
 
 header h1 { 
     margin: 0;
-    font-size: 26px;          /* 24 → 26 */
+    font-size: 26px;
     white-space: nowrap;
 }
 
 /* -----------LOGO----------- */
 .logo {
-    height: 50px;             /* 45 → 50 */
+    height: 50px;
     width: auto;
     display: block;
     object-fit: contain;
@@ -116,7 +116,7 @@ nav {
 nav ul {
     list-style: none;
     display: flex;
-    gap: 14px;                /* 12 → 14 */
+    gap: 14px;
     margin: 0;
     padding: 0;
     align-items: center;
@@ -343,11 +343,11 @@ button[type="submit"] {
     }
     
     header h1 {
-        font-size: 22px;      /* 20 → 22 */
+        font-size: 22px;
     }
     
     .logo {
-        height: 45px;         /* 40 → 45 */
+        height: 45px;
     }
     
     nav ul {
@@ -356,7 +356,7 @@ button[type="submit"] {
     
     nav ul li a {
         padding: 6px 12px;
-        font-size: 15px;      /* 13 → 15 */
+        font-size: 15px;
     }
     
     main {
@@ -504,11 +504,11 @@ button[type="submit"] {
     }
     
     header h1 {
-        font-size: 20px;      /* 16 → 20 */
+        font-size: 20px;
     }
     
     .logo {
-        height: 36px;         /* 30 → 36 */
+        height: 36px;
     }
     
     nav ul {
@@ -516,8 +516,8 @@ button[type="submit"] {
     }
     
     nav ul li a {
-        padding: 6px 12px;    /* 4px 8px → 6px 12px */
-        font-size: 15px;      /* 12 → 15 */
+        padding: 6px 12px;
+        font-size: 15px;
     }
     
     main {
@@ -529,10 +529,10 @@ button[type="submit"] {
     }
     
     h1 {
-        font-size: 24px;      /* 22 → 24 */
+        font-size: 24px;
     }
     h2 {
-        font-size: 20px;      /* 18 → 20 */
+        font-size: 20px;
     }
     
     .btn, button[type="submit"] {
@@ -550,7 +550,7 @@ button[type="submit"] {
     }
     
     .footer-social a {
-        font-size: 28px;      /* 26 → 28 */
+        font-size: 28px;
     }
     .footer-social {
         gap: 16px;
@@ -609,14 +609,14 @@ textarea:focus-visible,
 /* Version responsive du bouton entrer */
 @media (max-width: 768px) {
     .btn-entrer {
-        font-size: 22px;      /* 20 → 22 */
+        font-size: 22px;
         padding: 18px 40px;
     }
 }
 
 @media (max-width: 480px) {
     .btn-entrer {
-        font-size: 18px;      /* 16 → 18 */
+        font-size: 18px;
         padding: 14px 30px;
     }
 }
@@ -672,13 +672,13 @@ footer {
 }
 
 .footer-social a:hover {
-    color: #ED2124;
+    color: var(--red);
     transform: scale(1.2);
     text-decoration: none;
 }
 
 .footer-social a:focus {
-    outline: 2px solid #ED2124;
+    outline: 2px solid var(--red);
     outline-offset: 4px;
     border-radius: 4px;
 }
@@ -698,7 +698,7 @@ footer {
 }
 
 .footer-links a:hover {
-    color: #ED2124;
+    color: var(--red);
     text-decoration: underline;
 }
 
@@ -803,6 +803,73 @@ footer p {
 }
 .btn-deconnexion:hover {
 	background: #5a6268;
+}
+
+/* ========== ADMIN ÉVÉNEMENTS : FEEDBACK ========== */
+.feedback-succes {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin: 8px 0;
+}
+
+.feedback-erreur {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin: 8px 0;
+}
+
+/* ========== ADMIN ÉVÉNEMENTS : BOUTONS AJOUTER / MODIFIER / SUPPRIMER ========== */
+.btn-ajouter {
+    display: inline-block;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    transition: background-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.btn-ajouter:hover {
+    background-color: #25612a;
+    box-shadow: 0 4px 12px rgba(46,125,50,0.3);
+    transform: translateY(-1px);
+}
+.btn-ajouter:active {
+    transform: translateY(0);
+}
+
+.btn-supprimer {
+    display: inline-block;
+    background-color: var(--red);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    margin-left: 8px;
+    transition: background-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.btn-supprimer:hover {
+    background-color: var(--red-dark);
+    box-shadow: 0 4px 12px rgba(237,33,36,0.3);
+    transform: translateY(-1px);
+}
+.btn-supprimer:active {
+    transform: translateY(0);
 }
 
 /* ========== BADGES ÉVÉNEMENTS ========== */
