@@ -1,12 +1,90 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="refresh" content="0; url=accueil.html">
-	<link rel="canonical" href="accueil.html">
-	<title>Interactiv' Media</title>
-</head>
-<body>
-	<p>Redirection vers <a href="accueil.html">la page d'accueil</a>...</p>
+	<head>
+		<meta charset="UTF-8">
+	<link rel="icon" type="image/png" href="images/logo2.webp">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Interactiv' Media – Association citoyenne lyonnaise. Découvrez nos débats « Le jeudi ça se dit », nos événements, notre quiz interactif et comment nous rejoindre.">
+		<title>Accueil - Interactiv' Media</title>
+		<link rel="stylesheet" href="styles/style.css">
+		<!-- Lien Font Awesome pour les logos des réseaux sociaux -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+		<script src="scripts/health-check.js" defer></script>
+		<script src="scripts/nav.js" defer></script>
+		<script src="scripts/evenements.js" defer></script>
+	</head>
+
+	<body>
+		<header>
+		<a href="accueil.html"><img src="images/logo.webp" alt="Logo Interactiv' Media" style="height:50px; width:auto;"></a>
+		<button class="menu-toggle" aria-label="Menu" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'));document.querySelector('nav').classList.toggle('open')">
+        <span></span><span></span><span></span>
+    </button>
+    <nav>
+			<ul class="menu">
+				<li><a href="accueil.html">Accueil</a></li>
+				<li><a href="apropos.html">À propos</a></li>
+				<li><a href="evenements.html">Événements</a></li>
+				<li><a href="republique-citoyenne.html">République citoyenne</a></li>
+				<li><a href="recrutement.html">Nous rejoindre</a></li>
+				<li><a href="contact.html">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+
+		<main>
+		<section>
+			<h1>Bienvenue sur le site d'Interactiv' Media</h1>
+				<p>Nous sommes une jeune association lyonnaise qui médiatise les actualités de Lyon et sa banlieue. Nous animons également des évènements citoyens. Notre projet phare : <strong>« Le jeudi ça se dit »</strong>, un débat citoyen organisé une fois par mois dans un restaurant lyonnais.</p>
+				<p id="prochain-evenement"></p>
+				<p>Vous souhaitez rejoindre l'aventure ? Nous recherchons des bénévoles et des nouveaux membres. <a href="recrutement.html">En savoir plus</a></p>
+			</section>
+		<section>
+			<h2>Notre dernière vidéo</h2>
+			<div class="video-wrapper">
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/YZy8icW-LYQ?si=NX67L9b6qxYhnsod" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+			</div>
+		</section>
+		<section>
+		<h2>Nos vidéos courtes</h2>
+<p>Retrouvez nos dernières publications Instagram.</p>
+<div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-top:20px;">
+    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DMm3xz9NNxU/" data-instgrm-version="14" style="max-width:320px; min-width:280px; width:100%;"></blockquote>
+    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DLSg3APN74I/" data-instgrm-version="14" style="max-width:320px; min-width:280px; width:100%;"></blockquote>
+    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DKFcXnbNKWH/" data-instgrm-version="14" style="max-width:320px; min-width:280px; width:100%;"></blockquote>
+</div>
+
+<script async src="//www.instagram.com/embed.js"></script>
+</section>
+		</main>
+
+		<footer>
+		<div class="footer-content">
+			<div class="footer-social">
+				<a href="https://www.instagram.com/interactiv.media/" target="_blank" rel="noopener" aria-label="Instagram">
+					<i class="fab fa-instagram"></i>
+				</a>
+				<a href="https://www.facebook.com/profile.php?id=100067852282850" target="_blank" rel="noopener" aria-label="Facebook">
+					<i class="fab fa-facebook"></i>
+				</a>
+				<a href="mailto:interactivcontact@gmail.com" aria-label="Email">
+					<i class="fas fa-envelope"></i>
+				</a>
+				<a href="https://www.youtube.com/@interactivmedia870" target="_blank" rel="noopener" aria-label="YouTube">
+					<i class="fab fa-youtube"></i>
+				</a>
+				<a href="https://www.linkedin.com/in/interactiv-media-a91b14208/" target="_blank" rel="noopener" aria-label="LinkedIn">
+					<i class="fab fa-linkedin"></i>
+				</a>
+			</div>
+			<div class="footer-links">
+				<a href="mentions-legales.html">Mentions légales</a>
+				<span>|</span>
+				<a href="politique-confidentialite.html">Politique de confidentialité</a>
+			</div>
+			<p>© 2026 Interactiv' Media - Tous droits réservés</p>
+		</div>
+	</footer>
+
 </body>
 </html>

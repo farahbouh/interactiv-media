@@ -17,7 +17,7 @@
 	<body>
 		<header>
 		<a href="accueil.html"><img src="images/logo.webp" alt="Logo Interactiv' Media" style="height:50px; width:auto;"></a>
-		<button class="menu-toggle" aria-label="Menu" aria-expanded="false">
+		<button class="menu-toggle" aria-label="Menu" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'));document.querySelector('nav').classList.toggle('open')">
         <span></span><span></span><span></span>
     </button>
     <nav>
@@ -45,6 +45,17 @@
 			<iframe width="560" height="315" src="https://www.youtube.com/embed/YZy8icW-LYQ?si=NX67L9b6qxYhnsod" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 			</div>
 		</section>
+		<section>
+		<h2>Nos vidéos courtes</h2>
+<p>Retrouvez nos dernières publications Instagram.</p>
+<div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-top:20px;">
+    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DMm3xz9NNxU/" data-instgrm-version="14" style="max-width:320px; min-width:280px; width:100%;"></blockquote>
+    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DLSg3APN74I/" data-instgrm-version="14" style="max-width:320px; min-width:280px; width:100%;"></blockquote>
+    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DKFcXnbNKWH/" data-instgrm-version="14" style="max-width:320px; min-width:280px; width:100%;"></blockquote>
+</div>
+
+<script async src="//www.instagram.com/embed.js"></script>
+</section>
 		</main>
 
 		<footer>

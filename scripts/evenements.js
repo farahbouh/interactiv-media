@@ -31,7 +31,7 @@ function getBadge(dateStr) {
     if (d.getTime() === today.getTime()) {
         return `<span class="event-badge badge-aujourd-hui"><span class="badge-dot"></span>En ce moment</span>`;
     } else if (d > today) {
-        return `<span class="event-badge badge-a-venir">A venir</span>`;
+        return `<span class="event-badge badge-a-venir"> À venir</span>`;
     } else {
         return `<span class="event-badge badge-passe">Passé</span>`;
     }

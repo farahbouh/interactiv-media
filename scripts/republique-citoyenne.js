@@ -1,12 +1,42 @@
-// Génère et télécharge un PDF du contenu de la page République citoyenne
+// Génère et télécharge un PDF de l'affiche République citoyenne.
 document.getElementById('downloadPdfBtn').addEventListener('click', function () {
-	const element = document.getElementById('pdf-content');
-	const options = {
-		margin: 10,
-		filename: 'republique-citoyenne-interactiv-media.pdf',
-		image: { type: 'jpeg', quality: 0.98 },
-		html2canvas: { scale: 2 },
-		jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+	const { jsPDF } = window.jspdf;
+	const doc = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+
+	const img = new Image();
+	img.crossOrigin = 'anonymous';
+	img.src = 'images/republique-citoyenne-affiche.webp';
+
+	img.onload = function () {
+		const canvas = document.createElement('canvas');
+		canvas.width = img.naturalWidth;
+		canvas.height = img.naturalHeight;
+		canvas.getContext('2d').drawImage(img, 0, 0);
+		const imgData = canvas.toDataURL('image/png');
+
+		const pageWidth = doc.internal.pageSize.getWidth();
+		const pageHeight = doc.internal.pageSize.getHeight();
+		const margin = 10;
+		const maxWidth = pageWidth - margin * 2;
+		const maxHeight = pageHeight - margin * 2;
+
+		const ratio = img.naturalWidth / img.naturalHeight;
+		let renderWidth = maxWidth;
+		let renderHeight = renderWidth / ratio;
+
+		if (renderHeight > maxHeight) {
+			renderHeight = maxHeight;
+			renderWidth = renderHeight * ratio;
+		}
+
+		const x = (pageWidth - renderWidth) / 2;
+		const y = (pageHeight - renderHeight) / 2;
+
+		doc.addImage(imgData, 'PNG', x, y, renderWidth, renderHeight);
+		doc.save('republique-citoyenne-interactiv-media.pdf');
 	};
-	html2pdf().set(options).from(element).save();
+
+	img.onerror = function () {
+		alert("Erreur lors du chargement de l'image pour la génération du PDF.");
+	};
 });

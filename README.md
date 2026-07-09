@@ -2,24 +2,61 @@
 
 ## Présentation
 
-Ce projet est un site vitrine développé dans le cadre d’un stage de L3 informatique pour l’association **Interactiv’ Media** (Lyon).  
-L’association organise des débats citoyens (« Le jeudi ça se dit ») et souhaitait une présence en ligne pour présenter ses activités, recruter des bénévoles et proposer un contenu interactif.
+Site vitrine développé dans le cadre d'un stage de L3 informatique pour l'association **Interactiv' Media** (Lyon).
 
-Le site est accessible à l’adresse suivante :  
-[https://interactiv-media.netlify.app/](https://interactiv-media.netlify.app/)
+Le site est accessible à l'adresse suivante :  
+[https://interactivmedia.netlify.app/](https://interactivmedia.netlify.app/)
 
-## Fonctionnalités
+---
 
-- 7 pages (Accueil, À propos, Le débat, Événements, Quiz, Recrutement, Contact)
-- Quiz interactif (questions chargées depuis un fichier JSON)
-- Formulaires de contact et de recrutement (via Formspree)
-- Design responsive (mobile-first, menu adaptatif)
-- Animations CSS (survol des cartes, transitions)
-- Backend (API Flask + SQLite) pour la gestion des scores du quiz (en cours/optionnel)
+## Pages du site
+
+- Accueil
+- À propos
+- Événements
+- République citoyenne
+- Recrutement
+- Contact
+- Mentions légales
+- Politique de confidentialité
+- Administration des événements
+
+---
 
 ## Technologies utilisées
 
-- **Frontend** : HTML5, CSS3, JavaScript (fetch API, DOM)
-- **Backend** : Python (Flask)
-- **Services** : Formspree (formulaires), Netlify (hébergement)
-- **Outils** : Git, GitLab, Figma et canva (maquette)
+- **Frontend** : HTML5, CSS3, JavaScript
+- **Backend** : Python (Flask), SQLite
+- **Hébergement** : Netlify (frontend), Render (backend)
+- **Services** : Formspree (formulaires)
+- **Versionnement** : Git, Gitlab, Github
+---
+
+## Structure du projet
+/
+├── images/
+│ └── (fichiers images)
+├── scripts/
+│ └── (fichiers JavaScript)
+├── styles/
+│ └── (fichiers CSS)
+├── accueil.html
+├── apropos.html
+├── evenements.html
+├── republique-citoyenne.html
+├── recrutement.html
+├── contact.html
+├── mentions-legales.html
+├── politique-confidentialite.html
+├── admin_evenements.html
+├── evenements.py
+├── requirements.txt
+├── Dockerfile
+└── README.md
+
+---
+
+## Auteur
+
+**Farah BOUHNAIDA** – Stagiaire L3 Informatique  
+Stage réalisé chez Interactiv' Media (Lyon) – Juin / Juillet 2026
