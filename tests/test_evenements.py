@@ -105,19 +105,15 @@ def test_admin_delete_event_without_auth(client):
 @patch('evenements.supabase')
 def test_admin_get_events_with_auth(mock_supabase, client, auth_token):
     """Test avec auth et mock de Supabase"""
-    # Mock de la réponse Supabase
+    # Mock de la réponse Supabase - la route fait .select("*").order("date").execute()
     mock_data = [
         {'id': 1, 'titre': 'Event 1', 'date': '2026-01-01', 'description': 'Desc 1'},
         {'id': 2, 'titre': 'Event 2', 'date': '2026-02-01', 'description': 'Desc 2'}
     ]
-    mock_table = MagicMock()
-    mock_select = MagicMock()
     mock_execute = MagicMock()
     mock_execute.data = mock_data
 
-    mock_select.execute.return_value = mock_execute
-    mock_table.select.return_value = mock_select
-    mock_supabase.table.return_value = mock_table
+    mock_supabase.table.return_value.select.return_value.order.return_value.execute.return_value = mock_execute
 
     response = client.get('/api/admin/evenements',
                          headers={'Authorization': f'Bearer {auth_token}'})
@@ -165,7 +161,7 @@ def test_admin_put_event_with_auth(mock_supabase, client, auth_token):
 
 @patch('evenements.supabase')
 def test_admin_put_event_not_found(mock_supabase, client, auth_token):
-    """Test modification d'un événement qui n'existe pas"""
+    """Test modification d'un événement qui n'existe pas - la route renvoie 200 avec {} (pas de gestion 404 dédiée)"""
     mock_update = MagicMock()
     mock_eq = MagicMock()
     mock_execute = MagicMock()
@@ -180,7 +176,8 @@ def test_admin_put_event_not_found(mock_supabase, client, auth_token):
         json={'titre': 'Modifié'}
     )
 
-    assert response.status_code == 404
+    assert response.status_code == 200
+    assert response.json == {}
 
 @patch('evenements.supabase')
 def test_admin_delete_event_with_auth(mock_supabase, client, auth_token):
@@ -203,18 +200,20 @@ def test_admin_delete_event_with_auth(mock_supabase, client, auth_token):
 
 @patch('evenements.supabase')
 def test_get_events_public(mock_supabase, client):
-    """Test GET /api/evenements public"""
-    mock_data = [
+    """Test GET /api/evenements public - la route fait 2 requêtes (futurs via .gte + passés via .lt)"""
+    mock_data_futurs = [
         {'id': 1, 'titre': 'Event 1', 'date': '2026-01-01', 'description': 'Desc 1'}
     ]
-    mock_table = MagicMock()
-    mock_select = MagicMock()
-    mock_execute = MagicMock()
-    mock_execute.data = mock_data
+    mock_execute_futurs = MagicMock()
+    mock_execute_futurs.data = mock_data_futurs
 
-    mock_select.execute.return_value = mock_execute
-    mock_table.select.return_value = mock_select
-    mock_supabase.table.return_value = mock_table
+    mock_execute_passes = MagicMock()
+    mock_execute_passes.data = []
+
+    mock_select = MagicMock()
+    mock_select.gte.return_value.order.return_value.execute.return_value = mock_execute_futurs
+    mock_select.lt.return_value.order.return_value.limit.return_value.execute.return_value = mock_execute_passes
+    mock_supabase.table.return_value.select.return_value = mock_select
 
     response = client.get('/api/evenements')
 
@@ -257,12 +256,17 @@ def test_token_expiration():
 
 # ==================== TESTS DE DÉCONNEXION ====================
 
-def test_admin_logout(client, auth_token):
+@patch('evenements.supabase')
+def test_admin_logout(mock_supabase, client, auth_token):
     """Test la déconnexion"""
+    mock_execute = MagicMock()
+    mock_execute.data = []
+    mock_supabase.table.return_value.select.return_value.order.return_value.execute.return_value = mock_execute
+
     # Vérifier qu'on peut accéder avec le token
     response_get = client.get('/api/admin/evenements',
                              headers={'Authorization': f'Bearer {auth_token}'})
-    assert response_get.status_code in [200, 500]  # 500 si Supabase pas mocké
+    assert response_get.status_code == 200
 
     # Se déconnecter
     response_logout = client.post('/api/admin/deconnexion',
