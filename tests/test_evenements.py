@@ -4,10 +4,10 @@ import pytest
 import tempfile
 from unittest.mock import patch, MagicMock
 
-# Ajoute le dossier parent au path pour importer admin_evenements
+# Ajoute le dossier parent au path pour importer evenements
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from admin_evenements import app, sessions_actives
+from evenements import app, sessions_actives
 
 # ==================== FIXTURES ====================
 
@@ -102,7 +102,7 @@ def test_admin_delete_event_without_auth(client):
 
 # ==================== TESTS ROUTES PROTÉGÉES (avec auth - mock Supabase) ====================
 
-@patch('admin_evenements.supabase')
+@patch('evenements.supabase')
 def test_admin_get_events_with_auth(mock_supabase, client, auth_token):
     """Test avec auth et mock de Supabase"""
     # Mock de la réponse Supabase
@@ -126,7 +126,7 @@ def test_admin_get_events_with_auth(mock_supabase, client, auth_token):
     assert len(response.json) == 2
     assert response.json[0]['titre'] == 'Event 1'
 
-@patch('admin_evenements.supabase')
+@patch('evenements.supabase')
 def test_admin_post_event_with_auth(mock_supabase, client, auth_token):
     """Test ajout d'événement avec auth"""
     mock_data = {'id': 3, 'titre': 'Nouvel Event', 'date': '15 juin 2026', 'description': 'Nouveau'}
@@ -142,7 +142,7 @@ def test_admin_post_event_with_auth(mock_supabase, client, auth_token):
     assert response.status_code == 201
     assert response.json['titre'] == 'Nouvel Event'
 
-@patch('admin_evenements.supabase')
+@patch('evenements.supabase')
 def test_admin_put_event_with_auth(mock_supabase, client, auth_token):
     """Test modification d'événement"""
     mock_data = {'id': 1, 'titre': 'Modifié', 'date': '2026-01-01', 'description': 'Modifié'}
@@ -163,7 +163,7 @@ def test_admin_put_event_with_auth(mock_supabase, client, auth_token):
     assert response.status_code == 200
     assert response.json['titre'] == 'Modifié'
 
-@patch('admin_evenements.supabase')
+@patch('evenements.supabase')
 def test_admin_put_event_not_found(mock_supabase, client, auth_token):
     """Test modification d'un événement qui n'existe pas"""
     mock_update = MagicMock()
@@ -182,7 +182,7 @@ def test_admin_put_event_not_found(mock_supabase, client, auth_token):
 
     assert response.status_code == 404
 
-@patch('admin_evenements.supabase')
+@patch('evenements.supabase')
 def test_admin_delete_event_with_auth(mock_supabase, client, auth_token):
     """Test suppression d'événement"""
     mock_delete = MagicMock()
@@ -201,7 +201,7 @@ def test_admin_delete_event_with_auth(mock_supabase, client, auth_token):
 
 # ==================== TESTS ROUTES PUBLIQUES (avec mock Supabase) ====================
 
-@patch('admin_evenements.supabase')
+@patch('evenements.supabase')
 def test_get_events_public(mock_supabase, client):
     """Test GET /api/evenements public"""
     mock_data = [
@@ -221,7 +221,7 @@ def test_get_events_public(mock_supabase, client):
     assert response.status_code == 200
     assert len(response.json) == 1
 
-@patch('admin_evenements.supabase')
+@patch('evenements.supabase')
 def test_get_events_public_supabase_error(mock_supabase, client):
     """Test erreur Supabase sur route publique"""
     mock_supabase.table.side_effect = Exception("Supabase connection error")
@@ -243,7 +243,7 @@ def test_admin_page_html(client):
 
 def test_token_expiration():
     """Test que le token expire après 3600 secondes"""
-    from admin_evenements import connexion_requise
+    from evenements import connexion_requise
     import time
 
     # Simuler un token
